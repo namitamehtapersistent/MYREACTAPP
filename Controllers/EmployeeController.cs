@@ -8,11 +8,6 @@ namespace MyReactApp.Controllers;
     [Route("api/[controller]")]
     public class EmployeeController : ControllerBase
     {
-
-        // public EmployeeController(){
-
-        // }
-
         [HttpGet]
         [Route("GetEmployees")]
         public IActionResult GetEmployees()

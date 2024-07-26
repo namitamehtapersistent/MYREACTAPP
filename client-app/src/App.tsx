@@ -20,7 +20,7 @@ useEffect(() => {
 // 3. Create div & table
   return(
     <div className="container">
-       <h1> Employees </h1>
+       <h1> Employees NEW </h1>
        <div className="row">
           <div className="col-sm-12">
             <table className="table tables-striped">
@@ -35,7 +35,7 @@ useEffect(() => {
               </thead>
               <tbody>
                 {
-                  employees.map((item) => (
+                  employees.map((item : any) => (
                     <tr>
                        <td>{ item.idEmployee }</td>
                        <td>{ item.name }</td>
