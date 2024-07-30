@@ -1,0 +1,5 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+
+.table-dark{
+    --bs-table-color: rgb(236, 74, 74) !important;
+}

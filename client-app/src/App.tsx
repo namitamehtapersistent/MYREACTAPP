@@ -20,17 +20,17 @@ useEffect(() => {
 // 3. Create div & table
   return(
     <div className="container">
-       <h1> Employees NEW </h1>
+       <h1> Device Details </h1>
        <div className="row">
           <div className="col-sm-12">
-            <table className="table tables-striped">
+            <table className="table table-striped table-dark">
               <thead>
                 <tr>
-                <th>IdEmployee</th>
+                <th>Device ID</th>
                 <th>Name</th>
-                <th>Email</th>
-                <th>Full Address</th>
-                <th>Phone</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Stage</th>
                 </tr>
               </thead>
               <tbody>
