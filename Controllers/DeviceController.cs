@@ -6,25 +6,25 @@ namespace MyReactApp.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class EmployeeController : ControllerBase
+public class DeviceController : ControllerBase
 {
     // Details
     [HttpGet]
-    [Route("GetEmployees")]
-    public IActionResult GetEmployees()
+    [Route("GetDevices")]
+    public IActionResult GetDevices()
     {
-        return StatusCode(StatusCodes.Status200OK, EmployeeData.employeesList);
+        return StatusCode(StatusCodes.Status200OK, DeviceData.deviceList);
     }
 
 
     //Create
     [HttpPost]
-    [Route("CreateEmployee")]
-    public async Task<ActionResult> CreateEmployee(Employee emp)
+    [Route("CreateDevice")]
+    public async Task<ActionResult> CreateDevice(Device emp)
     {
         try
         {
-            EmployeeData.employeesList.Add(emp);
+            DeviceData.deviceList.Add(emp);
         }
         catch (Exception ex)
         {
@@ -35,15 +35,15 @@ public class EmployeeController : ControllerBase
 
     //Update
     [HttpPut]
-    [Route("UpdateEmployee/{EmployeeId}")]
-    public async Task<ActionResult> UpdateEmployee(string EmployeeId, Employee emp)
+    [Route("UpdateDevice/{DeviceId}")]
+    public async Task<ActionResult> UpdateDevice(string DeviceId, Device emp)
     {
-        if (string.IsNullOrEmpty(EmployeeId))
+        if (string.IsNullOrEmpty(DeviceId))
         {
             return BadRequest("Please enter Employee Id");
         }
 
-        var existingEmpIndex = EmployeeData.employeesList.FindIndex(x => x.IdEmployee == EmployeeId);
+        var existingEmpIndex = DeviceData.deviceList.FindIndex(x => x.DeviceId == DeviceId);
 
         if (existingEmpIndex == -1)
         {
@@ -51,7 +51,7 @@ public class EmployeeController : ControllerBase
         }
         try
         {
-            EmployeeData.employeesList[existingEmpIndex] = emp;
+            DeviceData.deviceList[existingEmpIndex] = emp;
             return Ok("User updated successfully!");
         }
         catch (Exception ex)
@@ -62,18 +62,18 @@ public class EmployeeController : ControllerBase
 
     //Delete
     [HttpDelete]
-    [Route("DeleteEmployee/{EmployeeId}")]
-    public async Task<ActionResult> DeleteEmployee(string EmployeeId)
+    [Route("DeleteDevice/{DeviceId}")]
+    public async Task<ActionResult> DeleteDevice(string DeviceId)
     {
         try
         {
-            var employee = EmployeeData.employeesList.FirstOrDefault(x => x.IdEmployee == EmployeeId);
+            var employee = DeviceData.deviceList.FirstOrDefault(x => x.DeviceId == DeviceId);
             if (employee == null)
             {
                 return NotFound();
             }
 
-            EmployeeData.employeesList.Remove(employee);
+            DeviceData.deviceList.Remove(employee);
 
             return Ok("Employee deleted successfully!");
         }

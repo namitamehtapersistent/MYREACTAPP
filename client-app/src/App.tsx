@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 
 const App = () => {
   //1. create usestate
-  const [employees, setEmployees] = useState([])
+  const [devices, setDevices] = useState([])
 
 //2. Call api
 useEffect(() => {
-  fetch("api/employee/GetEmployees")
+    fetch("api/device/GetDevices")
   .then(response => {
     console.log(response);
     var obj = response.json();
     console.log(obj);
      return obj;
   }).then(responseJson => {
-      setEmployees(responseJson)
+      setDevices(responseJson)
   })
 }, []) 
 
@@ -35,13 +35,13 @@ useEffect(() => {
               </thead>
               <tbody>
                 {
-                  employees.map((item : any) => (
+                  devices.map((item : any) => (
                     <tr>
-                       <td>{ item.idEmployee }</td>
-                       <td>{ item.name }</td>
-                       <td>{ item.email }</td>
-                       <td>{ item.address }</td>
-                       <td>{ item.phone }</td>
+                          <td>{item.deviceId }</td>
+                          <td>{item.name }</td>
+                          <td>{item.location }</td>
+                          <td>{item.status }</td>
+                          <td>{item.stage }</td>
                        </tr>
                   ))
                 }
