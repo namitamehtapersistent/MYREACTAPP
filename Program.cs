@@ -1,8 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using MyReactApp.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<DeviceManagementContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("GraphQLDBConnection")));
 
 var app = builder.Build();
 
@@ -16,6 +23,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+
 
 
 app.MapControllerRoute(
