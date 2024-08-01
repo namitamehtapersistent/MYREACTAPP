@@ -20,24 +20,19 @@ public class DeviceController : ControllerBase
     [Route("GetDevices")]
     public IActionResult GetDevices()
     {
-       // var lst = (from ep in this._context.Devices
-        //           //where ep.DeviceId == id
-      //             select ep).ToList();
-
-        return StatusCode(StatusCodes.Status200OK, this._context.Devices.ToList()); //DeviceData.deviceList
+        return StatusCode(StatusCodes.Status200OK, this._context.Devices.ToList());
     }
 
 
     //Create
     [HttpPost]
     [Route("CreateDevice")]
-    public async Task<ActionResult> CreateDevice(Device emp)
+    public IActionResult CreateDevice(Device emp)
     {
         try
         {
             this._context.Devices.Add(emp);
             this._context.SaveChanges();
-            //DeviceData.deviceList.Add(emp);
         }
         catch (Exception ex)
         {
@@ -46,21 +41,17 @@ public class DeviceController : ControllerBase
         return Ok("Device created successfully!!");
     }
 
-    //Update not working
+    //Update
     [HttpPut]
     [Route("UpdateDevice/{DeviceId}")]
-    public async Task<ActionResult> UpdateDevice(int DeviceId, Device emp)
+    public IActionResult UpdateDevice(int DeviceId, Device emp)
     {
         if (DeviceId == null)
         {
             return BadRequest("Please enter Device Id");
         }
 
-        var deviceToUpdate = this._context.Devices.Where(x => x.DeviceId == DeviceId).SingleOrDefault();
-        //  where ep.DeviceId == DeviceId
-        //  select ep).ToList();
-        //var existingEmpIndex = DeviceData.deviceList.FindIndex(x => x.DeviceId == DeviceId);
-
+        var deviceToUpdate = this._context.Devices.FirstOrDefault(o => o.DeviceId == DeviceId);
 
         if (deviceToUpdate == null)
         {
@@ -68,9 +59,8 @@ public class DeviceController : ControllerBase
         }
         try
         {
-            deviceToUpdate = emp;
+            this._context.Entry(deviceToUpdate).CurrentValues.SetValues(emp);
             this._context.SaveChanges();
-            //DeviceData.deviceList[existingEmpIndex] = emp;
             return Ok("Device updated successfully!");
         }
         catch (Exception ex)
@@ -82,7 +72,7 @@ public class DeviceController : ControllerBase
     //Delete
     [HttpDelete]
     [Route("DeleteDevice/{DeviceId}")]
-    public async Task<ActionResult> DeleteDevice(int DeviceId)
+    public IActionResult DeleteDevice(int DeviceId)
     {
         try
         {
@@ -92,7 +82,6 @@ public class DeviceController : ControllerBase
                 return NotFound();
             }
             this._context.Devices.Remove(employee);
-            //DeviceData.deviceList.Remove(employee);
             this._context.SaveChanges();
 
             return Ok("Device deleted successfully!");

@@ -34,7 +34,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n      \"DeviceId\": \"1\",\r\n      \"Name\": \"DEF\",\r\n      \"Status\": \"Active\",\r\n      \"Location\": \"Location3\",\r\n      \"Stage\": \"idle\"\r\n}\r\n\r\n",
+					"raw": "    {\r\n        \"deviceId\": 1,\r\n        \"name\": \"Tom B. Erichsen2\",\r\n        \"location\": \"Alaska\",\r\n        \"status\": \"InActive\",\r\n        \"stage\": \"Idle\"\r\n    }\r\n\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -64,7 +64,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n      \"DeviceId\": \"6\",\r\n      \"Name\": \"DEF\",\r\n      \"Status\": \"InActive\",\r\n      \"Location\": \"Location3\",\r\n      \"Stage\": \"idle\"\r\n}\r\n",
+					"raw": "{\r\n      \"DeviceId\": 1,\r\n      \"Name\": \"DEF\",\r\n      \"Status\": \"Active\",\r\n      \"Location\": \"Location3\",\r\n      \"Stage\": \"idle\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -72,7 +72,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:44456/api/device/UpdateDevice/6",
+					"raw": "https://localhost:44456/api/device/UpdateDevice/1",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -82,7 +82,7 @@
 						"api",
 						"device",
 						"UpdateDevice",
-						"6"
+						"1"
 					]
 				}
 			},
