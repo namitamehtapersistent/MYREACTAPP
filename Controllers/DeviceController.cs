@@ -36,9 +36,9 @@ public class DeviceController : ControllerBase
     //Update
     [HttpPut]
     [Route("UpdateDevice/{DeviceId}")]
-    public async Task<ActionResult> UpdateDevice(string DeviceId, Device emp)
+    public async Task<ActionResult> UpdateDevice(int DeviceId, Device emp)
     {
-        if (string.IsNullOrEmpty(DeviceId))
+        if (DeviceId == null)
         {
             return BadRequest("Please enter Employee Id");
         }
@@ -63,7 +63,7 @@ public class DeviceController : ControllerBase
     //Delete
     [HttpDelete]
     [Route("DeleteDevice/{DeviceId}")]
-    public async Task<ActionResult> DeleteDevice(string DeviceId)
+    public async Task<ActionResult> DeleteDevice(int DeviceId)
     {
         try
         {
