@@ -1,4 +1,32 @@
 import { useEffect, useState } from "react";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  HttpLink,
+  from,
+} from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
+import GetUsers from "./Components/GetUsers";
+
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    
+    graphQLErrors.map(({ message, locations, path }) => {
+      alert(`Graphql error ${message}`);
+    });
+  }
+});
+
+const link = from([
+  errorLink,
+  new HttpLink({ uri: "https://localhost:7258/graphql"}),
+]);
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: link,
+});
 
 const App = () => {
   //1. create usestate
@@ -20,7 +48,12 @@ useEffect(() => {
 // 3. Create div & table
   return(
     <div className="container">
-       <h1> Device Details </h1>
+    <ApolloProvider client={client}>
+        {" "}
+        <GetUsers />
+    </ApolloProvider>
+
+       {/* <h1> Device Details </h1>
        <div className="row">
           <div className="col-sm-12">
             <table className="table table-striped table-dark">
@@ -48,7 +81,7 @@ useEffect(() => {
               </tbody>
             </table>
           </div>
-       </div>
+       </div> */}
     </div>
   )
 }
